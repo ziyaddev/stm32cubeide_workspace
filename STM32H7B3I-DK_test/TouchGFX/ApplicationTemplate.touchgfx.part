@@ -1,0 +1,22 @@
+
+{
+  "Application": {
+    "Name": "STM32H7B3I-DK_test",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "AvailableColorDepths": [ 16 ],
+    "AvailableLCDs":
+    {
+      "16": "LCD16bpp"
+    },
+    "AvailableResolutions" : [
+      {
+        "Width": 32,
+        "Height": 32
+      }
+    ],
+    "PostGenerateTargetCommand" : "touchgfx update_project --project-file=../STM32H7B3I-DK_test.ioc --platform=m7",
+    "Family" : "STM32H7",
+    "SubFamily" : "STM32H7A3/7B3"
+  },
+  "Version": "4.17.0"
+}

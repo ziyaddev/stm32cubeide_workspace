@@ -1,0 +1,22 @@
+
+{
+  "Application": {
+    "Name": "ADXL345_test_F446RE",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "AvailableColorDepths": [ 16 ],
+    "AvailableLCDs":
+    {
+      "16": "LCD16bpp"
+    },
+    "AvailableResolutions" : [
+      {
+        "Width": 128,
+        "Height": 128
+      }
+    ],
+    "PostGenerateTargetCommand" : "touchgfx update_project --project-file=../ADXL345_test_F446RE.ioc --platform=m4",
+    "Family" : "STM32F4",
+    "SubFamily" : "STM32F446"
+  },
+  "Version": "4.17.0"
+}
