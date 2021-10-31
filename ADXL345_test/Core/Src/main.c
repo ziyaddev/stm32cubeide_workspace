@@ -22,12 +22,14 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
 #include <string.h>
 #include <stdio.h>
 #include "st7735.h"
 #include "fonts.h"
 #include "testimg.h"
 #include "ADXL.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -227,12 +229,7 @@ int main(void)
   MX_SPI3_Init();
   /* USER CODE BEGIN 2 */
 
-//  adxl_init();
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+  //  adxl_init();
 
   ST7735init();
 
@@ -249,10 +246,14 @@ int main(void)
 
   ADXL_Init(&ADXL_InitStruct);
 
+  /* USER CODE END 2 */
 
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
   while (1)
   {
 	  // loop();
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -308,6 +309,7 @@ int main(void)
 		  //HAL_GPIO_WritePin(ADXL_CS_GPIO_Port, ADXL_CS_Pin, GPIO_PIN_RESET);
 	}
 */
+
   }
   /* USER CODE END 3 */
 }
