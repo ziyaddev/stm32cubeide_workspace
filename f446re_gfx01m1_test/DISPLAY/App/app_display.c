@@ -20,6 +20,9 @@
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
+#include "key_io.h"
+#include "mem_io.h"
+#include "lcd_io.h"
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -41,7 +44,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-static uint8_t TransferAllowed = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -62,6 +65,18 @@ void MX_DISPLAY_Init(void)
   /* USER CODE BEGIN MX_DISPLAY_Init 0 */
 
   /* USER CODE END MX_DISPLAY_Init 0 */
+  if(BSP_MEM_Init(0) != BSP_ERROR_NONE)
+  {
+    Error_Handler();
+  }
+  if(BSP_LCD_Init(0, LCD_ORIENTATION_PORTRAIT) != BSP_ERROR_NONE)
+  {
+    Error_Handler();
+  }
+  if(BSP_KEY_Init(0, KEY_ORIENTATION_PORTRAIT) != BSP_ERROR_NONE)
+  {
+    Error_Handler();
+  }
   /* USER CODE BEGIN MX_DISPLAY_Init 1 */
 
   /* USER CODE END MX_DISPLAY_Init 1 */
@@ -95,18 +110,29 @@ void DISPLAY_Task(void *argument)
   /* USER CODE END DISPLAY_Task 1 */
 }
 
-/* USER CODE BEGIN 1 */
-void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin)
+void BSP_LCD_SignalTearingEffectEvent(uint32_t Instance, uint8_t state, uint16_t Line)
 {
-  /* Prevent unused argument(s) compilation warning */
-  if(GPIO_Pin == LCD_TE_GPIO_PIN)
+  if(Instance == 0)
   {
-    TransferAllowed = 1;
+    /* USER CODE BEGIN BSP_LCD_SignalTearingEffectEvent */
+    if(state)
+    {
+      /* Line '0' is the Vsync event */
+      if(Line == 0)
+      {
+        /* TE event is received : allow display refresh */
+      }
+    }
+    else
+    {
+      /* TE event is done : de-allow display refresh */
+    }
+    /* USER CODE END BSP_LCD_SignalTearingEffectEvent */
   }
-  /* NOTE: This function should not be modified, when the callback is needed,
-           the HAL_GPIO_EXTI_Rising_Callback could be implemented in the user file
-   */
 }
+
+/* USER CODE BEGIN 1 */
+
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

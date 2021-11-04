@@ -37,6 +37,13 @@
 
 /* Defines ------------------------------------------------------------------*/
 /* STMicroelectronics.X-CUBE-DISPLAY.2.0.0 */
+#define DISPLAY_MEM_BUS_SPI
+#define DISPLAY_MEM_COMP
+#define DISPLAY_MEM_COMP_MX25L6433F
+#define DISPLAY_KEY_COMP
+#define DISPLAY_LCD_BUS_SPI
+#define DISPLAY_LCD_COMP
+#define DISPLAY_LCD_COMP_ILI9341
 #define DISPLAY_BOARD_GFX01M1
 
 #endif /* __RTE_COMPONENTS_H__ */

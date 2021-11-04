@@ -1,14 +1,14 @@
 /**
   ******************************************************************************
-  * @file           : stm32g0xx_nucleo_errno.h
+  * @file           : stm32f4xx_nucleo_errno.h
   * @brief          : Error Code
   ******************************************************************************
   ******************************************************************************
 */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef STM32G0XX_NUCLEO_ERRNO_H
-#define STM32G0XX_NUCLEO_ERRNO_H
+#ifndef STM32F4XX_NUCLEO_ERRNO_H
+#define STM32F4XX_NUCLEO_ERRNO_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -43,6 +43,6 @@
 #ifdef __cplusplus
 }
 #endif
-#endif /*STM32G0XX_NUCLEO_ERRNO_H */
+#endif /*STM32F4XX_NUCLEO_ERRNO_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

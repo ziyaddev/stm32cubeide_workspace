@@ -1,34 +1,34 @@
 /**
   ******************************************************************************
-  * @file           : stm32g0xx_nucleo_conf.h
+  * @file           : stm32f4xx_nucleo_conf.h
   * @brief          : Configuration file
   ******************************************************************************
   ******************************************************************************
 */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef STM32G0XX_NUCLEO_CONF_H
-#define STM32G0XX_NUCLEO_CONF_H
+#ifndef STM32F4XX_NUCLEO_CONF_H
+#define STM32F4XX_NUCLEO_CONF_H
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 /* Includes ------------------------------------------------------------------*/
-#include "stm32g0xx_hal.h"
+#include "stm32f4xx_hal.h"
 
 /** @addtogroup BSP
   * @{
   */
 
-/** @addtogroup STM32G0XX_NUCLEO
+/** @addtogroup STM32F4XX_NUCLEO
   * @{
   */
 
-/** @defgroup STM32G0XX_NUCLEO_CONFIG Config
+/** @defgroup STM32F4XX_NUCLEO_CONFIG Config
   * @{
   */
 
-/** @defgroup STM32G0XX_NUCLEO_CONFIG_Exported_Constants
+/** @defgroup STM32F4XX_NUCLEO_CONFIG_Exported_Constants
   * @{
   */
 /* COM Feature define */
@@ -68,6 +68,6 @@
 #ifdef __cplusplus
 }
 #endif
-#endif  /* STM32G0XX_NUCLEO_CONF_H */
+#endif  /* STM32F4XX_NUCLEO_CONF_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

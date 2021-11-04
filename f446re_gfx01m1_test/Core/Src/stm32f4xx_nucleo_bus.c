@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file           : stm32g0xx_nucleo_bus.c
+  * @file           : stm32f4xx_nucleo_bus.c
   * @brief          : source file for the BSP BUS IO driver
   ******************************************************************************
   * @attention
@@ -17,7 +17,7 @@
 */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32g0xx_nucleo_bus.h"
+#include "stm32f4xx_nucleo_bus.h"
 
 __weak HAL_StatusTypeDef MX_SPI1_Init(SPI_HandleTypeDef* hspi);
 __weak HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef* hspi);
@@ -26,15 +26,15 @@ __weak HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef* hspi);
   * @{
   */
 
-/** @addtogroup STM32G0XX_NUCLEO
+/** @addtogroup STM32F4XX_NUCLEO
   * @{
   */
 
-/** @defgroup STM32G0XX_NUCLEO_BUS STM32G0XX_NUCLEO BUS
+/** @defgroup STM32F4XX_NUCLEO_BUS STM32F4XX_NUCLEO BUS
   * @{
   */
 
-/** @defgroup STM32G0XX_NUCLEO_BUS_Exported_Variables BUS Exported Variables
+/** @defgroup STM32F4XX_NUCLEO_BUS_Exported_Variables BUS Exported Variables
   * @{
   */
 
@@ -44,7 +44,7 @@ SPI_HandleTypeDef hspi2;
   * @}
   */
 
-/** @defgroup STM32G0XX_NUCLEO_BUS_Private_Variables BUS Private Variables
+/** @defgroup STM32F4XX_NUCLEO_BUS_Private_Variables BUS Private Variables
   * @{
   */
 
@@ -61,7 +61,7 @@ static uint32_t SPI2InitCounter = 0;
   * @}
   */
 
-/** @defgroup STM32G0XX_NUCLEO_BUS_Private_FunctionPrototypes  BUS Private Function
+/** @defgroup STM32F4XX_NUCLEO_BUS_Private_FunctionPrototypes  BUS Private Function
   * @{
   */
 
@@ -80,11 +80,11 @@ static uint32_t SPI_GetPrescaler( uint32_t clk_src_hz, uint32_t baudrate_mbps );
   * @}
   */
 
-/** @defgroup STM32G0XX_NUCLEO_LOW_LEVEL_Private_Functions STM32G0XX_NUCLEO LOW LEVEL Private Functions
+/** @defgroup STM32F4XX_NUCLEO_LOW_LEVEL_Private_Functions STM32F4XX_NUCLEO LOW LEVEL Private Functions
   * @{
   */
 
-/** @defgroup STM32G0XX_NUCLEO_BUS_Exported_Functions STM32G0XX_NUCLEO_BUS Exported Functions
+/** @defgroup STM32F4XX_NUCLEO_BUS_Exported_Functions STM32F4XX_NUCLEO_BUS Exported Functions
   * @{
   */
 
@@ -451,7 +451,7 @@ __weak HAL_StatusTypeDef MX_SPI1_Init(SPI_HandleTypeDef* hspi)
   hspi->Instance = SPI1;
   hspi->Init.Mode = SPI_MODE_MASTER;
   hspi->Init.Direction = SPI_DIRECTION_2LINES;
-  hspi->Init.DataSize = SPI_DATASIZE_4BIT;
+  hspi->Init.DataSize = SPI_DATASIZE_8BIT;
   hspi->Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi->Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi->Init.NSS = SPI_NSS_SOFT;
@@ -459,9 +459,7 @@ __weak HAL_StatusTypeDef MX_SPI1_Init(SPI_HandleTypeDef* hspi)
   hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi->Init.TIMode = SPI_TIMODE_DISABLE;
   hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi->Init.CRCPolynomial = 7;
-  hspi->Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
-  hspi->Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+  hspi->Init.CRCPolynomial = 10;
   if (HAL_SPI_Init(hspi) != HAL_OK)
   {
     ret = HAL_ERROR;
@@ -488,21 +486,21 @@ static void SPI1_MspInit(SPI_HandleTypeDef* spiHandle)
     GPIO_InitStruct.Pin = BUS_SPI1_SCK_GPIO_PIN;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = BUS_SPI1_SCK_GPIO_AF;
     HAL_GPIO_Init(BUS_SPI1_SCK_GPIO_PORT, &GPIO_InitStruct);
 
     GPIO_InitStruct.Pin = BUS_SPI1_MISO_GPIO_PIN;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = BUS_SPI1_MISO_GPIO_AF;
     HAL_GPIO_Init(BUS_SPI1_MISO_GPIO_PORT, &GPIO_InitStruct);
 
     GPIO_InitStruct.Pin = BUS_SPI1_MOSI_GPIO_PIN;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = BUS_SPI1_MOSI_GPIO_AF;
     HAL_GPIO_Init(BUS_SPI1_MOSI_GPIO_PORT, &GPIO_InitStruct);
 
@@ -544,7 +542,7 @@ __weak HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef* hspi)
   hspi->Instance = SPI2;
   hspi->Init.Mode = SPI_MODE_MASTER;
   hspi->Init.Direction = SPI_DIRECTION_2LINES;
-  hspi->Init.DataSize = SPI_DATASIZE_4BIT;
+  hspi->Init.DataSize = SPI_DATASIZE_8BIT;
   hspi->Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi->Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi->Init.NSS = SPI_NSS_SOFT;
@@ -552,9 +550,7 @@ __weak HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef* hspi)
   hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi->Init.TIMode = SPI_TIMODE_DISABLE;
   hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi->Init.CRCPolynomial = 7;
-  hspi->Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
-  hspi->Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+  hspi->Init.CRCPolynomial = 10;
   if (HAL_SPI_Init(hspi) != HAL_OK)
   {
     ret = HAL_ERROR;

@@ -26,21 +26,46 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32g0xx_nucleo_errno.h"
-#include "stm32g0xx_nucleo_conf.h"
-
+#include "mem.h"
 #include "mem_conf.h"
+#include "../mx25l6433f/mx25l6433f.h"
 
 /* Exported types ------------------------------------------------------------*/
 
 /* Exported constants --------------------------------------------------------*/
+/* BSP Common Error codes */
+#ifndef BSP_ERROR_NONE
+#define BSP_ERROR_NONE                      0
+#define BSP_ERROR_NO_INIT                   -1
+#define BSP_ERROR_WRONG_PARAM               -2
+#define BSP_ERROR_BUSY                      -3
+#define BSP_ERROR_PERIPH_FAILURE            -4
+#define BSP_ERROR_COMPONENT_FAILURE         -5
+#define BSP_ERROR_UNKNOWN_FAILURE           -6
+#define BSP_ERROR_UNKNOWN_COMPONENT         -7
+#define BSP_ERROR_BUS_FAILURE               -8
+#define BSP_ERROR_CLOCK_FAILURE             -9
+#define BSP_ERROR_MSP_FAILURE               -10
+#define BSP_ERROR_FEATURE_NOT_SUPPORTED     -11
+#endif /* BSP_ERROR_NONE */
+
+#define MEM_BASE_ADDRESS                    0x90000000
 
 /* Exported macro ------------------------------------------------------------*/
 
 /* Exported functions prototypes ---------------------------------------------*/
 int32_t BSP_MEM_Init(uint32_t Instance);
 int32_t BSP_MEM_DeInit(uint32_t Instance);
-int32_t BSP_MEM_ReadData(uint32_t Instance, uint32_t Address, uint8_t *pData, uint16_t Size);
+int32_t BSP_MEM_BlockErase(uint32_t Instance, uint32_t BlockAddress, uint32_t BlockSize);
+int32_t BSP_MEM_ChipErase(uint32_t Instance);
+int32_t BSP_MEM_ReadData(uint32_t Instance, uint8_t *pData, uint32_t Address, uint32_t Size);
+int32_t BSP_MEM_ReadDataDMA(uint32_t Instance, uint8_t *pData, uint32_t Address, uint32_t Size);
+int32_t BSP_MEM_WriteData(uint32_t Instance, uint8_t *pData, uint32_t Address, uint32_t Size);
+int32_t BSP_MEM_WriteDataDMA(uint32_t Instance, uint8_t *pData, uint32_t Address, uint32_t Size);
+int32_t BSP_MEM_EnableMemoryMappedMode(uint32_t Instance);
+int32_t BSP_MEM_GetStatus(uint32_t Instance);
+void    BSP_MEM_WaitForTransferToBeDone(uint32_t Instance);
+void    BSP_MEM_SignalTransfertDone(uint32_t Instance, uint8_t Event);
 
 #ifdef __cplusplus
 }

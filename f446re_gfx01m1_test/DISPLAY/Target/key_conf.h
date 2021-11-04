@@ -25,35 +25,43 @@
  extern "C" {
 #endif
 
+/* Includes ------------------------------------------------------------------*/
+#include "stm32f4xx.h"
+
 /* KEY_CENTER Pin mapping */
 #define KEY_CENTER_GPIO_PORT     GPIOC
 #define KEY_CENTER_GPIO_PIN      GPIO_PIN_8
 #define KEY_CENTER_GPIO_LINE     8
-#define KEY_CENTER_GPIO_IRQn     EXTI4_15_IRQn
+#define KEY_CENTER_GPIO_IRQn     EXTI9_5_IRQn
 
+/* Exported types ------------------------------------------------------------*/
+
+/* Exported constants --------------------------------------------------------*/
 /* KEY_DOWN Pin mapping */
 #define KEY_DOWN_GPIO_PORT       GPIOC
 #define KEY_DOWN_GPIO_PIN        GPIO_PIN_10
 #define KEY_DOWN_GPIO_LINE       10
-#define KEY_DOWN_GPIO_IRQn       EXTI4_15_IRQn
+#define KEY_DOWN_GPIO_IRQn       EXTI15_10_IRQn
 
 /* KEY_LEFT Pin mapping */
 #define KEY_LEFT_GPIO_PORT       GPIOC
 #define KEY_LEFT_GPIO_PIN        GPIO_PIN_9
 #define KEY_LEFT_GPIO_LINE       9
-#define KEY_LEFT_GPIO_IRQn       EXTI4_15_IRQn
+#define KEY_LEFT_GPIO_IRQn       EXTI9_5_IRQn
 
 /* KEY_RIGHT Pin mapping */
 #define KEY_RIGHT_GPIO_PORT      GPIOC
 #define KEY_RIGHT_GPIO_PIN       GPIO_PIN_11
 #define KEY_RIGHT_GPIO_LINE      11
-#define KEY_RIGHT_GPIO_IRQn      EXTI4_15_IRQn
+#define KEY_RIGHT_GPIO_IRQn      EXTI15_10_IRQn
 
 /* KEY_UP Pin mapping */
 #define KEY_UP_GPIO_PORT         GPIOC
 #define KEY_UP_GPIO_PIN          GPIO_PIN_12
 #define KEY_UP_GPIO_LINE         12
-#define KEY_UP_GPIO_IRQn         EXTI4_15_IRQn
+#define KEY_UP_GPIO_IRQn         EXTI15_10_IRQn
+
+/* Exported functions prototypes ---------------------------------------------*/
 
 #ifdef __cplusplus
 }
