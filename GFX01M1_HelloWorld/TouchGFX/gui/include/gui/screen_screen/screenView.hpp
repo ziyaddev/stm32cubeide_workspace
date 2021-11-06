@@ -12,6 +12,7 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
 protected:
+    uint16_t value = 0;
 };
 
 #endif // SCREENVIEW_HPP

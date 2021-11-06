@@ -14,3 +14,6 @@ void screenView::tearDownScreen()
 {
     screenViewBase::tearDownScreen();
 }
+
+void
+Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%u", value);
