@@ -20,7 +20,8 @@
 #include <fonts/ApplicationFontProvider.hpp>
 #include <gui/common/FrontendHeap.hpp>
 #include <BitmapDatabase.hpp>
-#include <platform/driver/lcd/LCD16bpp.hpp>
+#include <TouchGFXDataReader.hpp>
+#include <platform/driver/lcd/LCD16bppSerialFlash.hpp>
 #include <touchgfx/hal/OSWrappers.hpp>
 #include <STM32DMA.hpp>
 #include <TouchGFXHAL.hpp>
@@ -32,7 +33,8 @@ extern "C" void touchgfx_taskEntry();
 
 static STM32TouchController tc;
 static STM32DMA dma;
-static LCD16bpp display;
+static TouchGFXDataReader dataReader;
+static LCD16bppSerialFlash display(dataReader);
 static ApplicationFontProvider fontProvider;
 static Texts texts;
 static TouchGFXHAL hal(dma, display, tc, 240, 320);
@@ -43,6 +45,12 @@ void touchgfx_init()
     TypedText::registerTexts(&texts);
     Texts::setLanguage(0);
 
+    /*
+     * Parse TouchGFXDataReader instance pointer to TouchGFXHAL and ApplicationFontProvider
+     * in order to enable external data access.
+     */
+    hal.setDataReader(&dataReader);
+    fontProvider.setFlashReader(&dataReader);
     FontManager::setFontProvider(&fontProvider);
 
     FrontendHeap& heap = FrontendHeap::getInstance();

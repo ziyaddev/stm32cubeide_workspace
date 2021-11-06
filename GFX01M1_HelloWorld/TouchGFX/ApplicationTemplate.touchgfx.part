@@ -6,7 +6,7 @@
     "AvailableColorDepths": [ 16 ],
     "AvailableLCDs":
     {
-      "16": "LCD16bpp"
+      "16": "LCD16bppSerialFlash"
     },
     "AvailableResolutions" : [
       {
