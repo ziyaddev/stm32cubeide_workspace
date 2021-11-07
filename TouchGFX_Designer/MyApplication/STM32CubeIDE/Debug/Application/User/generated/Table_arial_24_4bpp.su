@@ -1,0 +1,2 @@
+Table_arial_24_4bpp.cpp:218:209:void __tcf_0()	0	static
+Table_arial_24_4bpp.cpp:216:29:touchgfx::UnmappedDataFont& getFont_arial_24_4bpp()	72	static

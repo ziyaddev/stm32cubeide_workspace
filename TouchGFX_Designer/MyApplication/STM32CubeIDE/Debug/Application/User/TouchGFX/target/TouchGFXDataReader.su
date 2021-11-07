@@ -1,0 +1,9 @@
+TouchGFXDataReader.hpp:35:13:TouchGFXDataReader::~TouchGFXDataReader()	0	static
+TouchGFXDataReader.cpp:23:6:virtual bool TouchGFXDataReader::addressIsAddressable(const void*)	8	static
+TouchGFXDataReader.cpp:33:6:virtual void TouchGFXDataReader::copyData(const void*, void*, uint32_t)	8	static
+TouchGFXDataReader.cpp:43:6:virtual void TouchGFXDataReader::startFlashLineRead(const void*, uint32_t)	8	static
+TouchGFXDataReader.cpp:53:16:virtual const uint8_t* TouchGFXDataReader::waitFlashReadComplete()	8	static
+TouchGFXDataReader.hpp:35:13:virtual TouchGFXDataReader::~TouchGFXDataReader()	8	static
+TouchGFXDataReader.cpp:80:32:void DataReader_WaitForReceiveDone()	0	static
+TouchGFXDataReader.cpp:86:32:void DataReader_ReadData(uint32_t, uint8_t*, uint32_t)	0	static
+TouchGFXDataReader.cpp:92:32:void DataReader_StartDMAReadData(uint32_t, uint8_t*, uint32_t)	0	static

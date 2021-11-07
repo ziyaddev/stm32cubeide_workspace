@@ -1,0 +1,6 @@
+ButtonController.hpp:48:18:virtual void touchgfx::ButtonController::reset()	0	static
+MB1642BButtonController.cpp:5:6:virtual void MB1642AButtonController::init()	0	static
+MB1642BButtonController.hpp:6:7:MB1642AButtonController::~MB1642AButtonController()	0	static
+MB1642BButtonController.hpp:6:7:virtual MB1642AButtonController::~MB1642AButtonController()	8	static
+MB1642BButtonController.cpp:26:9:uint8_t MB1642AButtonController::MB1642KeyState()	8	static
+MB1642BButtonController.cpp:10:6:virtual bool MB1642AButtonController::sample(uint8_t&)	16	static

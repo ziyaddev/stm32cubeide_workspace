@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+<language name="s,S">
+
+</language>
+<language name="C Source File">
+<includepath>DISPLAY/App</includepath>
+<includepath>DISPLAY/Target</includepath>
+<includepath>Core/Inc</includepath>
+<includepath>Drivers/STM32L4xx_HAL_Driver/Inc</includepath>
+<includepath>Drivers/STM32L4xx_HAL_Driver/Inc/Legacy</includepath>
+<includepath>Drivers/CMSIS/Device/ST/STM32L4xx/Include</includepath>
+<includepath>Drivers/CMSIS/Include</includepath>
+<includepath>Drivers/BSP/Components/mx25l6433f</includepath>
+<includepath>Drivers/BSP/Components/Common</includepath>
+<includepath>Drivers/BSP/Components/ili9341</includepath>
+<includepath>TouchGFX/App</includepath>
+<includepath>TouchGFX/target/generated</includepath>
+<includepath>TouchGFX/target</includepath>
+<includepath>Middlewares/ST/touchgfx/framework/include</includepath>
+<includepath>TouchGFX/generated/fonts/include</includepath>
+<includepath>TouchGFX/generated/gui_generated/include</includepath>
+<includepath>TouchGFX/generated/images/include</includepath>
+<includepath>TouchGFX/generated/texts/include</includepath>
+<includepath>TouchGFX/generated/videos/include</includepath>
+<includepath>TouchGFX/gui/include</includepath>
+<includepath>X-CUBE-DISPLAY/Target</includepath>
+
+</language>
+<language name="Object File">
+
+</language>
+</section>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+<language name="s,S">
+<macro>
+<name>DEBUG</name><value/>
+</macro>
+
+</language>
+<language name="C Source File">
+<macro>
+<name>DEBUG</name><value/>
+</macro>
+<macro>
+<name>USE_HAL_DRIVER</name><value/>
+</macro>
+<macro>
+<name>STM32L476xx</name><value/>
+</macro>
+
+</language>
+<language name="Object File">
+
+</language>
+</section>
+</cdtprojectproperties>

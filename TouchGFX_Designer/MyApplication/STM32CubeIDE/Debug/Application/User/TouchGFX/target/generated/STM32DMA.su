@@ -1,0 +1,10 @@
+DMA.hpp:144:18:virtual void touchgfx::DMA_Interface::initialize()	0	static
+DMA.hpp:212:21:virtual touchgfx::DMAType touchgfx::DMA_Interface::getDMAType()	0	static
+STM32DMA.hpp:74:18:virtual void STM32DMA::signalDMAInterrupt()	0	static
+STM32DMA.hpp:84:18:virtual void STM32DMA::flush()	0	static
+STM32DMA.cpp:28:26:virtual touchgfx::BlitOperations STM32DMA::getBlitCaps()	0	static
+STM32DMA.hpp:32:7:STM32DMA::~STM32DMA()	0	static
+STM32DMA.cpp:33:6:virtual void STM32DMA::setupDataCopy(const touchgfx::BlitOp&)	8	static
+STM32DMA.cpp:38:6:virtual void STM32DMA::setupDataFill(const touchgfx::BlitOp&)	8	static
+STM32DMA.hpp:32:7:virtual STM32DMA::~STM32DMA()	8	static
+STM32DMA.cpp:23:1:STM32DMA::STM32DMA()	16	static

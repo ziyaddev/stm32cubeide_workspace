@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+<language name="s,S">
+
+</language>
+<language name="C Source File">
+<includepath>../TouchGFX/App</includepath>
+<includepath>../TouchGFX/target/generated</includepath>
+<includepath>../TouchGFX/target</includepath>
+<includepath>../Core/Inc</includepath>
+<includepath>../Drivers/STM32G0xx_HAL_Driver/Inc</includepath>
+<includepath>../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy</includepath>
+<includepath>../Drivers/CMSIS/Device/ST/STM32G0xx/Include</includepath>
+<includepath>../Drivers/CMSIS/Include</includepath>
+<includepath>../Middlewares/ST/touchgfx/framework/include</includepath>
+<includepath>../TouchGFX/generated/fonts/include</includepath>
+<includepath>../TouchGFX/generated/gui_generated/include</includepath>
+<includepath>../TouchGFX/generated/images/include</includepath>
+<includepath>../TouchGFX/generated/texts/include</includepath>
+<includepath>../TouchGFX/gui/include</includepath>
+<includepath>../TouchGFX/generated/videos/include</includepath>
+
+</language>
+<language name="C++ Source File">
+<includepath>../TouchGFX/App</includepath>
+<includepath>../TouchGFX/target/generated</includepath>
+<includepath>../TouchGFX/target</includepath>
+<includepath>../Core/Inc</includepath>
+<includepath>../Drivers/STM32G0xx_HAL_Driver/Inc</includepath>
+<includepath>../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy</includepath>
+<includepath>../Drivers/CMSIS/Device/ST/STM32G0xx/Include</includepath>
+<includepath>../Drivers/CMSIS/Include</includepath>
+<includepath>../Middlewares/ST/touchgfx/framework/include</includepath>
+<includepath>../TouchGFX/generated/fonts/include</includepath>
+<includepath>../TouchGFX/generated/gui_generated/include</includepath>
+<includepath>../TouchGFX/generated/images/include</includepath>
+<includepath>../TouchGFX/generated/texts/include</includepath>
+<includepath>../TouchGFX/gui/include</includepath>
+<includepath>../TouchGFX/generated/videos/include</includepath>
+
+</language>
+<language name="Object File">
+
+</language>
+</section>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+<language name="s,S">
+<macro>
+<name>DEBUG</name><value/>
+</macro>
+
+</language>
+<language name="C Source File">
+<macro>
+<name>STM32G071xx</name><value/>
+</macro>
+<macro>
+<name>USE_HAL_DRIVER</name><value/>
+</macro>
+<macro>
+<name>DEBUG</name><value/>
+</macro>
+
+</language>
+<language name="C++ Source File">
+<macro>
+<name>STM32G071xx</name><value/>
+</macro>
+<macro>
+<name>USE_HAL_DRIVER</name><value/>
+</macro>
+<macro>
+<name>DEBUG</name><value/>
+</macro>
+
+</language>
+<language name="Object File">
+
+</language>
+</section>
+</cdtprojectproperties>

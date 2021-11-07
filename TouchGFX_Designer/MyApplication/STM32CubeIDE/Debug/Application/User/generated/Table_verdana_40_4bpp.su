@@ -1,0 +1,2 @@
+Table_verdana_40_4bpp.cpp:30:192:void __tcf_0()	0	static
+Table_verdana_40_4bpp.cpp:28:29:touchgfx::UnmappedDataFont& getFont_verdana_40_4bpp()	72	static

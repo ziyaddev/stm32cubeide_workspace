@@ -1,0 +1,15 @@
+MB1642BDisplayDriver.c:16:13:Display_DCS_Send	0	static
+MB1642BDisplayDriver.c:36:13:Display_DCS_Send_With_Data	12	static
+MB1642BDisplayDriver.c:65:6:MB1642BDisplayDriver_DisplayOn	8	static
+MB1642BDisplayDriver.c:72:6:Display_OFF	8	static
+MB1642BDisplayDriver.c:81:6:Display_Set_Area	32	static
+MB1642BDisplayDriver.c:114:6:Display_Bitmap	32	static
+MB1642BDisplayDriver.c:167:6:HAL_GPIO_EXTI_Rising_Callback	8	static
+MB1642BDisplayDriver.c:178:6:HAL_GPIO_EXTI_Falling_Callback	0	static
+MB1642BDisplayDriver.c:184:6:MB1642BDisplayDriver_DisplayInit	24	static
+MB1642BDisplayDriver.c:219:6:MB1642BDisplayDriver_DisplayReset	8	static
+MB1642BDisplayDriver.c:227:6:MB1642BDisplayDriver_Init	8	static
+MB1642BDisplayDriver.c:235:5:touchgfxDisplayDriverTransmitActive	0	static
+MB1642BDisplayDriver.c:240:6:touchgfxDisplayDriverTransmitBlock	16	static
+MB1642BDisplayDriver.c:245:6:MB1642BDisplayDriver_DMACallback	8	static
+MB1642BDisplayDriver.c:285:5:touchgfxDisplayDriverShouldTransferBlock	0	static
