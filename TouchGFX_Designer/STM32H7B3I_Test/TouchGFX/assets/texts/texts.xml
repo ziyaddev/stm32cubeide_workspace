@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.18.0">
+  <Texts>
+    <Text Id="__SingleUse_5GOA" TypographyId="Typography_00" Alignment="Center" Direction="LTR">
+      <Translation Language="GB">Switch</Translation>
+    </Text>
+    <Text Id="__SingleUse_E1DF" TypographyId="Typography_00" Alignment="Center" Direction="LTR">
+      <Translation Language="GB">Switch</Translation>
+    </Text>
+    <Text Id="__SingleUse_3IOP" TypographyId="Large" Alignment="Center" Direction="LTR">
+      <Translation Language="GB">Val : &lt;value&gt;</Translation>
+    </Text>
+    <Text Id="__SingleUse_ZYNN" TypographyId="Large" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">0</Translation>
+    </Text>
+  </Texts>
+  <Typographies>
+    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" FallbackCharacter="?" />
+    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" FallbackCharacter="?" />
+    <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" FallbackCharacter="?" />
+    <Typography Id="Typography_00" Font="verdana.ttf" Size="14" Bpp="4" FallbackCharacter="?" />
+  </Typographies>
+</TextDatabase>

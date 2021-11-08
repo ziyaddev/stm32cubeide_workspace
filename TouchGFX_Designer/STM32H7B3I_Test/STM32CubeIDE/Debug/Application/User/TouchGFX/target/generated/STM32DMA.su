@@ -1,0 +1,27 @@
+core_cm7.h:1902:22:void __NVIC_EnableIRQ(IRQn_Type)	16	static,ignoring_inline_asm
+core_cm7.h:1940:22:void __NVIC_DisableIRQ(IRQn_Type)	16	static,ignoring_inline_asm
+Types.hpp:78:5:touchgfx::colortype::colortype()	16	static
+Types.hpp:114:5:touchgfx::colortype::operator uint32_t() const	16	static
+DMA.hpp:61:13:touchgfx::DMA_Queue::~DMA_Queue()	16	static
+DMA.hpp:61:13:virtual touchgfx::DMA_Queue::~DMA_Queue()	16	static
+DMA.hpp:138:18:virtual void touchgfx::DMA_Interface::flush()	16	static
+DMA.hpp:218:13:touchgfx::DMA_Interface::~DMA_Interface()	16	static
+DMA.hpp:218:13:virtual touchgfx::DMA_Interface::~DMA_Interface()	16	static
+DMA.hpp:228:5:touchgfx::DMA_Interface::DMA_Interface(touchgfx::DMA_Queue&)	16	static
+STM32DMA.hpp:73:31:virtual touchgfx::DMAType STM32DMA::getDMAType()	16	static
+STM32DMA.hpp:109:18:virtual void STM32DMA::signalDMAInterrupt()	16	static
+HAL.hpp:110:17:static touchgfx::HAL* touchgfx::HAL::getInstance()	4	static
+HAL.hpp:164:10:void touchgfx::HAL::signalDMAInterrupt()	16	static
+STM32DMA.cpp:43:17:void DMA2D_XferCpltCallback(DMA2D_HandleTypeDef*)	16	static
+BlitOp.hpp:46:8:touchgfx::BlitOp::BlitOp()	16	static
+STM32DMA.cpp:50:1:STM32DMA::STM32DMA()	24	static
+STM32DMA.cpp:55:1:STM32DMA::~STM32DMA()	16	static
+STM32DMA.cpp:55:1:virtual STM32DMA::~STM32DMA()	16	static
+STM32DMA.cpp:61:6:virtual void STM32DMA::initialize()	24	static
+STM32DMA.cpp:75:17:uint32_t STM32DMA::getChromARTInputFormat(touchgfx::Bitmap::BitmapFormat)	24	static
+STM32DMA.cpp:110:17:uint32_t STM32DMA::getChromARTOutputFormat(touchgfx::Bitmap::BitmapFormat)	24	static
+STM32DMA.cpp:143:16:virtual touchgfx::BlitOperations STM32DMA::getBlitCaps()	16	static
+STM32DMA.cpp:166:6:virtual void STM32DMA::setupDataCopy(const touchgfx::BlitOp&)	48	static
+STM32DMA.cpp:333:6:virtual void STM32DMA::setupDataFill(const touchgfx::BlitOp&)	32	static
+DMA.hpp:87:7:touchgfx::LockFreeDMA_Queue::~LockFreeDMA_Queue()	16	static
+DMA.hpp:87:7:virtual touchgfx::LockFreeDMA_Queue::~LockFreeDMA_Queue()	16	static

@@ -1,0 +1,60 @@
+Drawable.hpp:62:13:touchgfx::Drawable::~Drawable()	16	static
+Drawable.hpp:62:13:virtual touchgfx::Drawable::~Drawable()	16	static
+Drawable.hpp:132:23:virtual touchgfx::Drawable* touchgfx::Drawable::getFirstChild()	16	static
+Drawable.hpp:298:18:virtual void touchgfx::Drawable::setX(int16_t)	16	static
+Drawable.hpp:310:18:virtual void touchgfx::Drawable::setY(int16_t)	16	static
+Drawable.hpp:339:18:virtual void touchgfx::Drawable::setWidth(int16_t)	16	static
+Drawable.hpp:351:18:virtual void touchgfx::Drawable::setHeight(int16_t)	16	static
+Drawable.hpp:361:18:virtual void touchgfx::Drawable::childGeometryChanged()	16	static
+Drawable.hpp:372:18:virtual void touchgfx::Drawable::handleClickEvent(const touchgfx::ClickEvent&)	16	static
+Drawable.hpp:383:18:virtual void touchgfx::Drawable::handleGestureEvent(const touchgfx::GestureEvent&)	16	static
+Drawable.hpp:471:18:virtual void touchgfx::Drawable::handleDragEvent(const touchgfx::DragEvent&)	16	static
+Drawable.hpp:481:18:virtual void touchgfx::Drawable::handleTickEvent()	16	static
+Drawable.hpp:517:10:bool touchgfx::Drawable::isVisible() const	16	static
+Drawable.hpp:529:10:bool touchgfx::Drawable::isTouchable() const	16	static
+Drawable.hpp:568:18:virtual void touchgfx::Drawable::moveTo(int16_t, int16_t)	16	static
+Drawable.hpp:605:10:void touchgfx::Drawable::resetDrawChainCache()	16	static
+Drawable.hpp:683:18:virtual void touchgfx::Drawable::setupDrawChain(const touchgfx::Rect&, touchgfx::Drawable**)	24	static
+Screen.hpp:46:13:touchgfx::Screen::~Screen()	16	static
+Screen.hpp:46:13:virtual touchgfx::Screen::~Screen()	16	static
+Screen.hpp:93:18:virtual void touchgfx::Screen::setupScreen()	16	static
+Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	16	static
+Screen.hpp:115:18:virtual void touchgfx::Screen::tearDownScreen()	16	static
+Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	16	static
+Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	16	static
+Widget.hpp:47:18:virtual void touchgfx::Widget::getLastChild(int16_t, int16_t, touchgfx::Drawable**)	24	static
+Widget.hpp:36:7:touchgfx::Widget::~Widget()	16	static
+Widget.hpp:36:7:virtual touchgfx::Widget::~Widget()	16	static
+TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	16	static
+TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	16	static
+AbstractButton.hpp:32:7:touchgfx::AbstractButton::~AbstractButton()	16	static
+AbstractButton.hpp:32:7:virtual touchgfx::AbstractButton::~AbstractButton()	16	static
+TextArea.hpp:39:7:touchgfx::TextArea::~TextArea()	16	static
+TextArea.hpp:39:7:virtual touchgfx::TextArea::~TextArea()	16	static
+View.hpp:36:7:touchgfx::View<Screen2Presenter>::~View()	16	static
+View.hpp:36:7:virtual touchgfx::View<Screen2Presenter>::~View()	16	static
+Screen2ViewBase.hpp:19:13:Screen2ViewBase::~Screen2ViewBase()	16	static
+Screen2ViewBase.hpp:19:13:virtual Screen2ViewBase::~Screen2ViewBase()	16	static
+Screen2View.hpp:11:13:Screen2View::~Screen2View()	16	static
+Screen2View.hpp:11:13:virtual Screen2View::~Screen2View()	16	static
+Screen2View.cpp:3:1:Screen2View::Screen2View()	16	static
+Screen2View.cpp:8:6:virtual void Screen2View::setupScreen()	16	static
+Screen2View.cpp:13:6:virtual void Screen2View::tearDownScreen()	16	static
+Container.hpp:40:7:touchgfx::Container::~Container()	16	static
+Container.hpp:40:7:virtual touchgfx::Container::~Container()	16	static
+Box.hpp:29:7:touchgfx::Box::~Box()	16	static
+Box.hpp:29:7:virtual touchgfx::Box::~Box()	16	static
+Image.hpp:38:7:touchgfx::Image::~Image()	16	static
+Image.hpp:38:7:virtual touchgfx::Image::~Image()	16	static
+Button.hpp:31:7:touchgfx::Button::~Button()	16	static
+Button.hpp:31:7:virtual touchgfx::Button::~Button()	16	static
+ButtonWithLabel.hpp:38:7:touchgfx::ButtonWithLabel::~ButtonWithLabel()	16	static
+ButtonWithLabel.hpp:38:7:virtual touchgfx::ButtonWithLabel::~ButtonWithLabel()	16	static
+TextAreaWithWildcard.hpp:34:7:touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	16	static
+TextAreaWithWildcard.hpp:34:7:virtual touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	16	static
+Callback.hpp:357:8:touchgfx::Callback<Screen2ViewBase, const touchgfx::AbstractButton&>::~Callback()	16	static
+Callback.hpp:357:8:virtual touchgfx::Callback<Screen2ViewBase, const touchgfx::AbstractButton&>::~Callback()	16	static
+Callback.hpp:138:13:touchgfx::GenericCallback<T1, void, void>::~GenericCallback() [with T1 = const touchgfx::AbstractButton&]	16	static
+Callback.hpp:138:13:touchgfx::GenericCallback<T1, void, void>::~GenericCallback() [with T1 = const touchgfx::AbstractButton&]	16	static
+Callback.hpp:386:18:void touchgfx::Callback<dest_type, T1, void, void>::execute(T1) [with dest_type = Screen2ViewBase; T1 = const touchgfx::AbstractButton&]	16	static
+Callback.hpp:396:18:bool touchgfx::Callback<dest_type, T1, void, void>::isValid() const [with dest_type = Screen2ViewBase; T1 = const touchgfx::AbstractButton&]	16	static

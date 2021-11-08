@@ -8,7 +8,12 @@
 #include <texts/TextKeysAndLanguages.hpp>
 #include <touchgfx/Texts.hpp>
 #include <touchgfx/hal/HAL.hpp>
+#ifndef SIMULATOR
+#include <platform/driver/lcd/LCD16bppSerialFlash.hpp>
+#endif
+#ifdef SIMULATOR
 #include <platform/driver/lcd/LCD16bpp.hpp>
+#endif
 #include <gui/screen_screen/screenView.hpp>
 #include <gui/screen_screen/screenPresenter.hpp>
 
@@ -22,7 +27,12 @@ FrontendApplicationBase::FrontendApplicationBase(Model& m, FrontendHeap& heap)
 {
     touchgfx::HAL::getInstance()->setDisplayOrientation(touchgfx::ORIENTATION_LANDSCAPE);
     touchgfx::Texts::setLanguage(GB);
+#ifndef SIMULATOR
+    reinterpret_cast<touchgfx::LCD16bppSerialFlash&>(touchgfx::HAL::lcd()).enableTextureMapperAll();
+#endif
+#ifdef SIMULATOR
     reinterpret_cast<touchgfx::LCD16bpp&>(touchgfx::HAL::lcd()).enableTextureMapperAll();
+#endif
 }
 
 /*
