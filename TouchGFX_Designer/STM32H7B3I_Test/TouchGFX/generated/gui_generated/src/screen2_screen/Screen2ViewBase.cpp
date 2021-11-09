@@ -13,28 +13,32 @@ Screen2ViewBase::Screen2ViewBase() :
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
 
-    image1.setXY(0, 0);
-    image1.setBitmap(touchgfx::Bitmap(BITMAP_DARK_BACKGROUNDS_MAIN_BG_480X272PX_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_DARK_TEXTURES_GPLAYPATTERN_ID));
+    tiledImage1.setPosition(0, 0, 480, 272);
+    tiledImage1.setOffset(0, 0);
 
-    buttonWithLabel1.setXY(420, 0);
+    buttonWithLabel1.setXY(0, 0);
     buttonWithLabel1.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_ICON_BUTTON_PRESSED_ID));
-    buttonWithLabel1.setLabelText(touchgfx::TypedText(T___SINGLEUSE_E1DF));
+    buttonWithLabel1.setLabelText(touchgfx::TypedText(T___SINGLEUSE_44ND));
     buttonWithLabel1.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    buttonWithLabel1.setLabelColorPressed(touchgfx::Color::getColorFromRGB(112, 112, 112));
+    buttonWithLabel1.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     buttonWithLabel1.setAction(buttonCallback);
 
-    textArea1.setXY(174, 112);
-    textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    textArea1.setLinespacing(0);
-    Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_ZYNN).getText());
-    textArea1.setWildcard(textArea1Buffer);
-    textArea1.resizeToCurrentText();
-    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_3IOP));
+    gauge1.setBackground(touchgfx::Bitmap(BITMAP_BLUE_GAUGES_ORIGINAL_GAUGE_BACKGROUND_STYLE_00_ID));
+    gauge1.setPosition(115, 11, 251, 251);
+    gauge1.setCenter(125, 125);
+    gauge1.setStartEndAngle(-90, 90);
+    gauge1.setRange(0, 100);
+    gauge1.setValue(50);
+    gauge1.setEasingEquation(touchgfx::EasingEquations::linearEaseIn);
+    gauge1.setNeedle(BITMAP_BLUE_NEEDLES_ORIGINAL_GAUGE_NEEDLE_STYLE_00_ID, 11, 55);
+    gauge1.setMovingNeedleRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
+    gauge1.setSteadyNeedleRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
 
     add(__background);
-    add(image1);
+    add(tiledImage1);
     add(buttonWithLabel1);
-    add(textArea1);
+    add(gauge1);
 }
 
 void Screen2ViewBase::setupScreen()
@@ -48,7 +52,7 @@ void Screen2ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
     {
         //Interaction1
         //When buttonWithLabel1 clicked change screen to Screen1
-        //Go to Screen1 with screen transition towards East
-        application().gotoScreen1ScreenSlideTransitionEast();
+        //Go to Screen1 with screen transition towards West
+        application().gotoScreen1ScreenSlideTransitionWest();
     }
 }

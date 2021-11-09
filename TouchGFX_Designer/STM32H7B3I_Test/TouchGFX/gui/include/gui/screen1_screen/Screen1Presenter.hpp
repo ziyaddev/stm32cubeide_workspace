@@ -26,6 +26,7 @@ public:
     virtual void deactivate();
 
     virtual ~Screen1Presenter() {};
+    void UpdateGraph(uint16_t value);
 
 private:
     Screen1Presenter();

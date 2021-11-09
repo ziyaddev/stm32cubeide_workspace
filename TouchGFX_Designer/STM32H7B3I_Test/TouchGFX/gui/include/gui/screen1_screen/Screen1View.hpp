@@ -11,6 +11,7 @@ public:
     virtual ~Screen1View() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    void UpdateGraph(uint16_t value);
 protected:
 };
 

@@ -16,3 +16,7 @@ void Screen1Presenter::deactivate()
 {
 
 }
+void Screen1Presenter::UpdateGraph(uint16_t value)
+{
+	view.UpdateGraph(value);
+}

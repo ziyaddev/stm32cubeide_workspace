@@ -56,8 +56,12 @@ Application/User/TouchGFX/target/generated/TouchGFXConfiguration.o: \
  ../../TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp \
  ../../TouchGFX/gui/include/gui/model/ModelListener.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TiledImage.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
- ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/graph/GraphWrapAndClear.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/AbstractButton.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/graph/GraphScroll.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/graph/AbstractDataGraph.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/CWRUtil.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Utils.hpp \
@@ -75,14 +79,15 @@ Application/User/TouchGFX/target/generated/TouchGFXConfiguration.o: \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/PainterRGB888.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Color.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/AbstractPainterRGB888.hpp \
- ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp \
- ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp \
- ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/AbstractButton.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
  ../../TouchGFX/gui/include/gui/screen2_screen/Screen2View.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/screen2_screen/Screen2ViewBase.hpp \
  ../../TouchGFX/gui/include/gui/screen2_screen/Screen2Presenter.hpp \
- ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp \
- ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Gauge.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextureMapper.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/Circle.hpp \
  ../../TouchGFX/generated/images/include/BitmapDatabase.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/platform/driver/lcd/LCD24bpp.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/lcd/LCD24DebugPrinter.hpp \
@@ -242,9 +247,17 @@ Application/User/TouchGFX/target/generated/TouchGFXConfiguration.o: \
 
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
 
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TiledImage.hpp:
+
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp:
 
-../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/graph/GraphWrapAndClear.hpp:
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp:
+
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp:
+
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/AbstractButton.hpp:
+
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/graph/GraphScroll.hpp:
 
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/graph/AbstractDataGraph.hpp:
 
@@ -280,11 +293,9 @@ Application/User/TouchGFX/target/generated/TouchGFXConfiguration.o: \
 
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/AbstractPainterRGB888.hpp:
 
-../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp:
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:
 
-../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp:
-
-../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/AbstractButton.hpp:
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:
 
 ../../TouchGFX/gui/include/gui/screen2_screen/Screen2View.hpp:
 
@@ -292,9 +303,13 @@ Application/User/TouchGFX/target/generated/TouchGFXConfiguration.o: \
 
 ../../TouchGFX/gui/include/gui/screen2_screen/Screen2Presenter.hpp:
 
-../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Gauge.hpp:
 
-../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp:
+
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextureMapper.hpp:
+
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/Circle.hpp:
 
 ../../TouchGFX/generated/images/include/BitmapDatabase.hpp:
 

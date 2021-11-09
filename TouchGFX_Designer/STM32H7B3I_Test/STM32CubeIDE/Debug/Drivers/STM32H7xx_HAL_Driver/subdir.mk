@@ -6,6 +6,8 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c \
+C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c \
+C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c \
 C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c \
 C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_crc.c \
 C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_crc_ex.c \
@@ -32,6 +34,8 @@ C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test
 
 C_DEPS += \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal.d \
+./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc.d \
+./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc_ex.d \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_cortex.d \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_crc.d \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_crc_ex.d \
@@ -58,6 +62,8 @@ C_DEPS += \
 
 OBJS += \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal.o \
+./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc.o \
+./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc_ex.o \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_cortex.o \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_crc.o \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_crc_ex.o \
@@ -85,6 +91,10 @@ OBJS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal.o: C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c Drivers/STM32H7xx_HAL_Driver/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32H7B3xxQ -DDEBUG -c -I../../Core/Inc -I../../Drivers/CMSIS/Include -I../../Drivers/BSP -I../../TouchGFX/target -I../../TouchGFX/App -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../../TouchGFX/target/generated -I../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../Drivers/BSP/Components/Common -I../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../Drivers/BSP/STM32H7B3I-DK -I../../Middlewares/Third_Party/FreeRTOS/Source/include -I../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../../Drivers/BSP/Components/mx25lm51245g -I../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../Middlewares/ST/touchgfx/framework/include -I../../TouchGFX/generated/fonts/include -I../../TouchGFX/generated/gui_generated/include -I../../TouchGFX/generated/images/include -I../../TouchGFX/generated/texts/include -I../../TouchGFX/gui/include -I../../TouchGFX/generated/videos/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
+Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc.o: C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c Drivers/STM32H7xx_HAL_Driver/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32H7B3xxQ -DDEBUG -c -I../../Core/Inc -I../../Drivers/CMSIS/Include -I../../Drivers/BSP -I../../TouchGFX/target -I../../TouchGFX/App -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../../TouchGFX/target/generated -I../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../Drivers/BSP/Components/Common -I../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../Drivers/BSP/STM32H7B3I-DK -I../../Middlewares/Third_Party/FreeRTOS/Source/include -I../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../../Drivers/BSP/Components/mx25lm51245g -I../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../Middlewares/ST/touchgfx/framework/include -I../../TouchGFX/generated/fonts/include -I../../TouchGFX/generated/gui_generated/include -I../../TouchGFX/generated/images/include -I../../TouchGFX/generated/texts/include -I../../TouchGFX/gui/include -I../../TouchGFX/generated/videos/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
+Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc_ex.o: C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c Drivers/STM32H7xx_HAL_Driver/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32H7B3xxQ -DDEBUG -c -I../../Core/Inc -I../../Drivers/CMSIS/Include -I../../Drivers/BSP -I../../TouchGFX/target -I../../TouchGFX/App -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../../TouchGFX/target/generated -I../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../Drivers/BSP/Components/Common -I../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../Drivers/BSP/STM32H7B3I-DK -I../../Middlewares/Third_Party/FreeRTOS/Source/include -I../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../../Drivers/BSP/Components/mx25lm51245g -I../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../Middlewares/ST/touchgfx/framework/include -I../../TouchGFX/generated/fonts/include -I../../TouchGFX/generated/gui_generated/include -I../../TouchGFX/generated/images/include -I../../TouchGFX/generated/texts/include -I../../TouchGFX/gui/include -I../../TouchGFX/generated/videos/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
 Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_cortex.o: C:/Users/akchoucz/STM32CubeIDE/workspace_1.7.0/TouchGFX_Designer/STM32H7B3I_Test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c Drivers/STM32H7xx_HAL_Driver/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32H7B3xxQ -DDEBUG -c -I../../Core/Inc -I../../Drivers/CMSIS/Include -I../../Drivers/BSP -I../../TouchGFX/target -I../../TouchGFX/App -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../../TouchGFX/target/generated -I../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../Drivers/BSP/Components/Common -I../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../Drivers/BSP/STM32H7B3I-DK -I../../Middlewares/Third_Party/FreeRTOS/Source/include -I../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../../Drivers/BSP/Components/mx25lm51245g -I../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../Middlewares/ST/touchgfx/framework/include -I../../TouchGFX/generated/fonts/include -I../../TouchGFX/generated/gui_generated/include -I../../TouchGFX/generated/images/include -I../../TouchGFX/generated/texts/include -I../../TouchGFX/gui/include -I../../TouchGFX/generated/videos/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"

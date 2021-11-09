@@ -14,3 +14,7 @@ void Screen1View::tearDownScreen()
 {
     Screen1ViewBase::tearDownScreen();
 }
+void Screen1View::UpdateGraph(uint16_t value)
+{
+	dynamicGraph1.addDataPoint(value);
+}

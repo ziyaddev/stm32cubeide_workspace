@@ -8,9 +8,9 @@
 #include <mvp/View.hpp>
 #include <gui/screen2_screen/Screen2Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/widgets/TiledImage.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
-#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/widgets/Gauge.hpp>
 
 class Screen2ViewBase : public touchgfx::View<Screen2Presenter>
 {
@@ -28,15 +28,9 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::Image image1;
+    touchgfx::TiledImage tiledImage1;
     touchgfx::ButtonWithLabel buttonWithLabel1;
-    touchgfx::TextAreaWithOneWildcard textArea1;
-
-    /*
-     * Wildcard Buffers
-     */
-    static const uint16_t TEXTAREA1_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar textArea1Buffer[TEXTAREA1_SIZE];
+    touchgfx::Gauge gauge1;
 
 private:
 

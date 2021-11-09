@@ -43,7 +43,13 @@ build/MINGW32_NT-6.2/gui/src/screen1_screen/Screen1Presenter.o: \
  gui/include/gui/model/ModelListener.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Widget.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TiledImage.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/AbstractButton.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/graph/GraphWrapAndClear.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/graph/AbstractDataGraph.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/CWRUtil.hpp \
@@ -62,11 +68,8 @@ build/MINGW32_NT-6.2/gui/src/screen1_screen/Screen1Presenter.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/PainterRGB888.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Color.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/AbstractPainterRGB888.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/AbstractButton.hpp
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp
 
 gui/include/gui/screen1_screen/Screen1View.hpp:
 
@@ -154,7 +157,19 @@ gui/include/gui/model/ModelListener.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Widget.hpp:
 
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TiledImage.hpp:
+
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp:
+
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp:
+
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:
+
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp:
+
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp:
+
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/AbstractButton.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/graph/GraphWrapAndClear.hpp:
 
@@ -192,12 +207,6 @@ gui/include/gui/model/ModelListener.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/AbstractPainterRGB888.hpp:
 
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:
 
-../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:
-
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp:
-
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp:
-
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/AbstractButton.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:

@@ -8,11 +8,12 @@
 #include <mvp/View.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/Image.hpp>
-#include <touchgfx/widgets/graph/GraphWrapAndClear.hpp>
+#include <touchgfx/widgets/TiledImage.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
+#include <touchgfx/widgets/graph/GraphScroll.hpp>
 #include <touchgfx/widgets/graph/GraphElements.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB888.hpp>
-#include <touchgfx/widgets/ButtonWithLabel.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -30,11 +31,12 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::Image image1;
-    touchgfx::GraphWrapAndClear<100> dynamicGraph1;
+    touchgfx::TiledImage tiledImage1;
+    touchgfx::ButtonWithLabel buttonWithLabel1;
+    touchgfx::GraphScroll<100> dynamicGraph1;
     touchgfx::GraphElementLine dynamicGraph1Line1;
     touchgfx::PainterRGB888 dynamicGraph1Line1Painter;
-    touchgfx::ButtonWithLabel buttonWithLabel1;
+    touchgfx::TextAreaWithOneWildcard textArea1;
 
 private:
 

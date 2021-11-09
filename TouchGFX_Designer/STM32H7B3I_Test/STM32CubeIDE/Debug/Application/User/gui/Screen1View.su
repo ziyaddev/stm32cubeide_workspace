@@ -26,39 +26,48 @@ Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	16	stat
 Widget.hpp:47:18:virtual void touchgfx::Widget::getLastChild(int16_t, int16_t, touchgfx::Drawable**)	24	static
 Widget.hpp:36:7:touchgfx::Widget::~Widget()	16	static
 Widget.hpp:36:7:virtual touchgfx::Widget::~Widget()	16	static
+Image.hpp:38:7:touchgfx::Image::~Image()	16	static
+Image.hpp:38:7:virtual touchgfx::Image::~Image()	16	static
+TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	16	static
+TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	16	static
+AbstractButton.hpp:32:7:touchgfx::AbstractButton::~AbstractButton()	16	static
+AbstractButton.hpp:32:7:virtual touchgfx::AbstractButton::~AbstractButton()	16	static
 AbstractPainter.hpp:51:13:touchgfx::AbstractPainter::~AbstractPainter()	16	static
 AbstractPainter.hpp:51:13:virtual touchgfx::AbstractPainter::~AbstractPainter()	16	static
 CanvasWidget.hpp:60:18:virtual void touchgfx::CanvasWidget::setAlpha(uint8_t)	16	static
 CanvasWidget.hpp:66:21:virtual uint8_t touchgfx::CanvasWidget::getAlpha() const	16	static
 AbstractPainterRGB888.hpp:34:7:touchgfx::AbstractPainterRGB888::~AbstractPainterRGB888()	16	static
 AbstractPainterRGB888.hpp:34:7:virtual touchgfx::AbstractPainterRGB888::~AbstractPainterRGB888()	16	static
-TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	16	static
-TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	16	static
-AbstractButton.hpp:32:7:touchgfx::AbstractButton::~AbstractButton()	16	static
-AbstractButton.hpp:32:7:virtual touchgfx::AbstractButton::~AbstractButton()	16	static
+TextArea.hpp:39:7:touchgfx::TextArea::~TextArea()	16	static
+TextArea.hpp:39:7:virtual touchgfx::TextArea::~TextArea()	16	static
 View.hpp:36:7:touchgfx::View<Screen1Presenter>::~View()	16	static
 View.hpp:36:7:virtual touchgfx::View<Screen1Presenter>::~View()	16	static
-Screen1ViewBase.hpp:21:13:Screen1ViewBase::~Screen1ViewBase()	16	static
-Screen1ViewBase.hpp:21:13:virtual Screen1ViewBase::~Screen1ViewBase()	16	static
+Screen1ViewBase.hpp:22:13:Screen1ViewBase::~Screen1ViewBase()	16	static
+Screen1ViewBase.hpp:22:13:virtual Screen1ViewBase::~Screen1ViewBase()	16	static
 Screen1View.hpp:11:13:Screen1View::~Screen1View()	16	static
 Screen1View.hpp:11:13:virtual Screen1View::~Screen1View()	16	static
 Screen1View.cpp:3:1:Screen1View::Screen1View()	16	static
 Screen1View.cpp:8:6:virtual void Screen1View::setupScreen()	16	static
 Screen1View.cpp:13:6:virtual void Screen1View::tearDownScreen()	16	static
+Screen1View.cpp:17:6:void Screen1View::UpdateGraph(uint16_t)	16	static
 Container.hpp:40:7:touchgfx::Container::~Container()	16	static
 Container.hpp:40:7:virtual touchgfx::Container::~Container()	16	static
 Box.hpp:29:7:touchgfx::Box::~Box()	16	static
 Box.hpp:29:7:virtual touchgfx::Box::~Box()	16	static
-Image.hpp:38:7:touchgfx::Image::~Image()	16	static
-Image.hpp:38:7:virtual touchgfx::Image::~Image()	16	static
+TiledImage.hpp:33:7:touchgfx::TiledImage::~TiledImage()	16	static
+TiledImage.hpp:33:7:virtual touchgfx::TiledImage::~TiledImage()	16	static
+Button.hpp:31:7:touchgfx::Button::~Button()	16	static
+Button.hpp:31:7:virtual touchgfx::Button::~Button()	16	static
+ButtonWithLabel.hpp:38:7:touchgfx::ButtonWithLabel::~ButtonWithLabel()	16	static
+ButtonWithLabel.hpp:38:7:virtual touchgfx::ButtonWithLabel::~ButtonWithLabel()	16	static
 AbstractDataGraph.hpp:33:7:touchgfx::AbstractDataGraph::~AbstractDataGraph()	16	static
 AbstractDataGraph.hpp:33:7:virtual touchgfx::AbstractDataGraph::~AbstractDataGraph()	16	static
 AbstractDataGraph.hpp:895:7:touchgfx::AbstractDataGraphWithY::~AbstractDataGraphWithY()	16	static
 AbstractDataGraph.hpp:895:7:virtual touchgfx::AbstractDataGraphWithY::~AbstractDataGraphWithY()	16	static
-GraphWrapAndClear.hpp:31:7:touchgfx::DataGraphWrapAndClear::~DataGraphWrapAndClear()	16	static
-GraphWrapAndClear.hpp:31:7:virtual touchgfx::DataGraphWrapAndClear::~DataGraphWrapAndClear()	16	static
-GraphWrapAndClear.hpp:56:7:touchgfx::GraphWrapAndClear<100>::~GraphWrapAndClear()	16	static
-GraphWrapAndClear.hpp:56:7:virtual touchgfx::GraphWrapAndClear<100>::~GraphWrapAndClear()	16	static
+GraphScroll.hpp:32:7:touchgfx::DataGraphScroll::~DataGraphScroll()	16	static
+GraphScroll.hpp:32:7:virtual touchgfx::DataGraphScroll::~DataGraphScroll()	16	static
+GraphScroll.hpp:65:7:touchgfx::GraphScroll<100>::~GraphScroll()	16	static
+GraphScroll.hpp:65:7:virtual touchgfx::GraphScroll<100>::~GraphScroll()	16	static
 CanvasWidget.hpp:33:7:touchgfx::CanvasWidget::~CanvasWidget()	16	static
 CanvasWidget.hpp:33:7:virtual touchgfx::CanvasWidget::~CanvasWidget()	16	static
 GraphElements.hpp:30:7:touchgfx::AbstractGraphElement::~AbstractGraphElement()	16	static
@@ -67,10 +76,8 @@ GraphElements.hpp:467:7:touchgfx::GraphElementLine::~GraphElementLine()	16	stati
 GraphElements.hpp:467:7:virtual touchgfx::GraphElementLine::~GraphElementLine()	16	static
 PainterRGB888.hpp:33:7:touchgfx::PainterRGB888::~PainterRGB888()	16	static
 PainterRGB888.hpp:33:7:virtual touchgfx::PainterRGB888::~PainterRGB888()	16	static
-Button.hpp:31:7:touchgfx::Button::~Button()	16	static
-Button.hpp:31:7:virtual touchgfx::Button::~Button()	16	static
-ButtonWithLabel.hpp:38:7:touchgfx::ButtonWithLabel::~ButtonWithLabel()	16	static
-ButtonWithLabel.hpp:38:7:virtual touchgfx::ButtonWithLabel::~ButtonWithLabel()	16	static
+TextAreaWithWildcard.hpp:34:7:touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	16	static
+TextAreaWithWildcard.hpp:34:7:virtual touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	16	static
 Callback.hpp:357:8:touchgfx::Callback<Screen1ViewBase, const touchgfx::AbstractButton&>::~Callback()	16	static
 Callback.hpp:357:8:virtual touchgfx::Callback<Screen1ViewBase, const touchgfx::AbstractButton&>::~Callback()	16	static
 Callback.hpp:138:13:touchgfx::GenericCallback<T1, void, void>::~GenericCallback() [with T1 = const touchgfx::AbstractButton&]	16	static
