@@ -1,9 +1,9 @@
 .DS_Store
 /.metadata/
 /*/Debug/
-*/Debug/
+/*/*/*/Debug/
 /*/Release/
 /*/.settings/
-*/.settings/
+/*/*/*/.settings/
 /*/.mxproject
 *.launch
