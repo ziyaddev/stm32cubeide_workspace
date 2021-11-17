@@ -1,9 +1,13 @@
-.DS_Store
+# Folders
+
 /.metadata/
-/*/Debug/
-/*/*/*/Debug/
-/*/Release/
-/*/.settings/
-/*/*/*/.settings/
-/*/.mxproject
+Debug/
+Release/
+.settings/
+
+
+# Files
+
+.DS_Store
+.mxproject
 *.launch
