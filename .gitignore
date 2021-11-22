@@ -1,13 +1,13 @@
 # Folders
 
 /.metadata/
-Debug/
-Release/
 .settings/
-
 
 # Files
 
+*.d
+*.o
+*.su
 .DS_Store
 .mxproject
 *.launch
