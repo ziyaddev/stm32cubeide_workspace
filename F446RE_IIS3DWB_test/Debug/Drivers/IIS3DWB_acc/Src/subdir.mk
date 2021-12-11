@@ -5,12 +5,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Drivers/IIS3DWB_acc/Src/iis3dwb.c \
 ../Drivers/IIS3DWB_acc/Src/iis3dwb_reg.c 
 
 OBJS += \
+./Drivers/IIS3DWB_acc/Src/iis3dwb.o \
 ./Drivers/IIS3DWB_acc/Src/iis3dwb_reg.o 
 
 C_DEPS += \
+./Drivers/IIS3DWB_acc/Src/iis3dwb.d \
 ./Drivers/IIS3DWB_acc/Src/iis3dwb_reg.d 
 
 
@@ -21,7 +24,7 @@ Drivers/IIS3DWB_acc/Src/%.o: ../Drivers/IIS3DWB_acc/Src/%.c Drivers/IIS3DWB_acc/
 clean: clean-Drivers-2f-IIS3DWB_acc-2f-Src
 
 clean-Drivers-2f-IIS3DWB_acc-2f-Src:
-	-$(RM) ./Drivers/IIS3DWB_acc/Src/iis3dwb_reg.d ./Drivers/IIS3DWB_acc/Src/iis3dwb_reg.o
+	-$(RM) ./Drivers/IIS3DWB_acc/Src/iis3dwb.d ./Drivers/IIS3DWB_acc/Src/iis3dwb.o ./Drivers/IIS3DWB_acc/Src/iis3dwb_reg.d ./Drivers/IIS3DWB_acc/Src/iis3dwb_reg.o
 
 .PHONY: clean-Drivers-2f-IIS3DWB_acc-2f-Src
 
