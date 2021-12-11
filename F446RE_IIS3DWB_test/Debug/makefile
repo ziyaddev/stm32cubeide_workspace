@@ -61,8 +61,8 @@ all: main-build
 main-build: F446RE_IIS3DWB_test.elf secondary-outputs
 
 # Tool invocations
-F446RE_IIS3DWB_test.elf: $(OBJS) $(USER_OBJS) /Users/ziyad/STM32CubeIDE/workspace_1.7.0/F446RE_IIS3DWB_test/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "F446RE_IIS3DWB_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/ziyad/STM32CubeIDE/workspace_1.7.0/F446RE_IIS3DWB_test/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F446RE_IIS3DWB_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+F446RE_IIS3DWB_test.elf: $(OBJS) $(USER_OBJS) C:\Users\akchoucz\STM32CubeIDE\workspace_1.7.0\F446RE_IIS3DWB_test\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "F446RE_IIS3DWB_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\akchoucz\STM32CubeIDE\workspace_1.7.0\F446RE_IIS3DWB_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F446RE_IIS3DWB_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
