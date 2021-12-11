@@ -24,6 +24,7 @@
 
 #include <string.h>
 #include <stdio.h>
+// #include "MetaDataManager.h"
 #include "iis3dwb_reg.h"
 
 /* USER CODE END Includes */
@@ -35,6 +36,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+#define CHECK_VIBRATION_PARAM ((uint16_t)0x1234)
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -50,12 +54,74 @@ UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 
+/** @defgroup PREDCTIVE_MAINTENANCE_MAIN_EXPORTED_VARIABLES Predictive Maintenance Main Exported Variables
+  * @{
+  */
+
+/* Exported Variables -------------------------------------------------------------*/
+volatile uint32_t HCI_ProcessEvent =      0;
+volatile uint8_t FifoEnabled = 0;
+
+volatile uint32_t PredictiveMaintenance = 0;
+
+float RMS_Ch[AUDIO_IN_CHANNELS];
+float DBNOISE_Value_Old_Ch[AUDIO_IN_CHANNELS];
+
+// uint32_t ConnectionBleStatus  =0;
+
+TIM_HandleTypeDef    TimCCHandle;
+
+uint8_t bdaddr[6];
+
+// uint8_t EnvironmentalTimerEnabled= 0;
+// uint8_t AudioLevelTimerEnabled= 0;
+uint8_t InertialTimerEnabled= 0;
+
+// uint8_t AudioLevelEnable= 0;
+
+uint32_t uhCCR1_Val = DEFAULT_uhCCR1_Val;
+uint32_t uhCCR2_Val = DEFAULT_uhCCR2_Val;
+uint32_t uhCCR3_Val = DEFAULT_uhCCR3_Val;
+
+// uint8_t  NodeName[8];
+
+/**
+  * @}
+  */
+
 static int16_t data_raw_acceleration[3];
 static int16_t data_raw_temperature;
 static float acceleration_mg[3];
 static float temperature_degC;
 static uint8_t whoamI, rst;
 static uint8_t tx_buffer[1000];
+
+char dev_id [8];
+
+/** @defgroup PREDCTIVE_MAINTENANCE_MAIN_PRIVATE_VARIABLES Predictive Maintenance Main Private Variables
+  * @{
+  */
+
+uint16_t VibrationParam[11];
+
+/* Table with All the known Meta Data */
+MDM_knownGMD_t known_MetaData[]={
+  {GMD_NODE_NAME,      (sizeof(NodeName))},
+  {GMD_VIBRATION_PARAM,(sizeof(VibrationParam))},
+  {GMD_END    ,0}/* THIS MUST BE THE LAST ONE */
+};
+
+static volatile uint32_t ButtonPressed=           0;
+// static volatile uint32_t SendEnv=                 0;
+// static volatile uint32_t SendAudioLevel=          0;
+static volatile uint32_t SendAccGyroMag=          0;
+
+// static uint16_t PCM_Buffer[((AUDIO_IN_CHANNELS*AUDIO_IN_SAMPLING_FREQUENCY)/1000)  * N_MS ];
+// static uint32_t NumSample= ((AUDIO_IN_CHANNELS*AUDIO_IN_SAMPLING_FREQUENCY)/1000)  * N_MS;
+
+/**
+  * @}
+  */
 
 /* USER CODE END PV */
 
@@ -74,6 +140,38 @@ static void tx_com( uint8_t *tx_buffer, uint16_t len );
 static void tx_com_ziyad( uint8_t *tx_buffer, uint16_t len );
 static void platform_delay(uint32_t ms);
 static void platform_init(void);
+
+/** @defgroup PREDCTIVE_MAINTENANCE_MAIN_PRIVATE_FUNCTIONS_PROTOTYPES Predictive Maintenance Main Private Functions Prototypes
+  * @{
+  */
+
+static void InitTimers(void);
+static void InitPredictiveMaintenance(void);
+
+static unsigned char ReCallNodeNameFromMemory(void);
+static unsigned char ReCallVibrationParamFromMemory(void);
+
+// static void SendEnvironmentalData(void);
+static void SendMotionData(void);
+// static void SendAudioLevelData(void);
+
+static void ButtonCallback(void);
+// static void AudioProcess(void);
+
+// static void Environmental_StartStopTimer(void);
+// static void AudioLevel_StartStopTimer(void);
+static void Inertial_StartStopTimer(void);
+
+static void FFTAmplitude_EnableDisableFeature(void);
+static void FFTAlarmSpeedRMSStatus_EnableDisableFeature(void);
+static void FFTAlarmAccPeakStatus_EnableDisableFeature(void);
+static void FFTAlarmSubrangeStatus_EnableDisableFeature(void);
+
+//void APP_UserEvtRx(void *pData);
+
+/**
+  * @}
+  */
 
 /* USER CODE END PFP */
 
@@ -106,6 +204,44 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
+  InitTargetPlatform();
+
+  /* Check the MetaDataManager */
+ InitMetaDataManager((void *)&known_MetaData,MDM_DATA_TYPE_GMD,NULL);
+
+  PREDMNT1_PRINTF("\n\t(HAL %ld.%ld.%ld_%ld)\r\n"
+        "\tCompiled %s %s"
+
+#if defined (__IAR_SYSTEMS_ICC__)
+        " (IAR)\r\n"
+#elif defined (__CC_ARM)
+        " (KEIL)\r\n"
+#elif defined (__GNUC__)
+        " (STM32CubeIDE)\r\n"
+#endif
+         "\tSend Every %4dmS Temperature/Humidity/Pressure\r\n"
+         "\tSend Every %4dmS Acc/Gyro/Magneto\r\n"
+         "\tSend Every %4dmS dB noise\r\n\n",
+           HAL_GetHalVersion() >>24,
+          (HAL_GetHalVersion() >>16)&0xFF,
+          (HAL_GetHalVersion() >> 8)&0xFF,
+           HAL_GetHalVersion()      &0xFF,
+         __DATE__,__TIME__,
+         ALGO_PERIOD_ENV,
+         ALGO_PERIOD_ACC_GYRO_MAG,
+         ALGO_PERIOD_AUDIO_LEVEL);
+
+#ifdef PREDMNT1_DEBUG_CONNECTION
+  PREDMNT1_PRINTF("Debug Connection         Enabled\r\n");
+#endif /* PREDMNT1_DEBUG_CONNECTION */
+
+#ifdef PREDMNT1_DEBUG_NOTIFY_TRAMISSION
+  PREDMNT1_PRINTF("Debug Notify Trasmission Enabled\r\n\n");
+#endif /* PREDMNT1_DEBUG_NOTIFY_TRAMISSION */
+
+  /* Set Node Name */
+  ReCallNodeNameFromMemory();
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -114,7 +250,21 @@ int main(void)
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_UART_Transmit(&huart2, "Init ... ", 10, 100);
+  HAL_UART_Transmit(&huart2, "\nInit ... \n", 10, 100);
+
+  /* Check the BootLoader Compliance */
+  PREDMNT1_PRINTF("\r\n");
+  if(CheckBootLoaderCompliance()) {
+    PREDMNT1_PRINTF("BootLoader Compliant with FOTA procedure\r\n\n");
+  } else {
+    PREDMNT1_PRINTF("ERROR: BootLoader NOT Compliant with FOTA procedure\r\n\n");
+  }
+
+  /* initialize timers */
+  InitTimers();
+
+  /* Predictive Maintenance Initialization */
+  InitPredictiveMaintenance();
 
   stmdev_ctx_t dev_ctx;
 
@@ -135,7 +285,11 @@ int main(void)
   if (whoamI != IIS3DWB_ID)
     while (1);
 
-  HAL_UART_Transmit(&huart2, whoamI, 10, 100);
+  sprintf(dev_id, "%u", whoamI);
+
+  HAL_UART_Transmit(&huart2, dev_id, 10, 100);
+
+  HAL_Delay(5000);
 
   /* Restore default configuration */
   iis3dwb_reset_set(&dev_ctx, PROPERTY_ENABLE);
@@ -157,6 +311,8 @@ int main(void)
    * Accelerometer low pass filter path
    */
   iis3dwb_xl_filt_path_on_out_set(&dev_ctx, IIS3DWB_LP_ODR_DIV_100);
+
+  HAL_Delay(5000);
 
   /* USER CODE END 2 */
 
