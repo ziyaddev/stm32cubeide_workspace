@@ -24,7 +24,7 @@
 
 #include <string.h>
 #include <stdio.h>
-// #include "MetaDataManager.h"
+#include "MetaDataManager.h"
 #include "iis3dwb_reg.h"
 
 /* USER CODE END Includes */
@@ -64,8 +64,8 @@ volatile uint8_t FifoEnabled = 0;
 
 volatile uint32_t PredictiveMaintenance = 0;
 
-float RMS_Ch[AUDIO_IN_CHANNELS];
-float DBNOISE_Value_Old_Ch[AUDIO_IN_CHANNELS];
+// float RMS_Ch[AUDIO_IN_CHANNELS];
+// float DBNOISE_Value_Old_Ch[AUDIO_IN_CHANNELS];
 
 // uint32_t ConnectionBleStatus  =0;
 
@@ -111,7 +111,7 @@ MDM_knownGMD_t known_MetaData[]={
   {GMD_END    ,0}/* THIS MUST BE THE LAST ONE */
 };
 
-static volatile uint32_t ButtonPressed=           0;
+// static volatile uint32_t ButtonPressed=           0;
 // static volatile uint32_t SendEnv=                 0;
 // static volatile uint32_t SendAudioLevel=          0;
 static volatile uint32_t SendAccGyroMag=          0;
@@ -148,14 +148,14 @@ static void platform_init(void);
 static void InitTimers(void);
 static void InitPredictiveMaintenance(void);
 
-static unsigned char ReCallNodeNameFromMemory(void);
+// static unsigned char ReCallNodeNameFromMemory(void);
 static unsigned char ReCallVibrationParamFromMemory(void);
 
 // static void SendEnvironmentalData(void);
 static void SendMotionData(void);
 // static void SendAudioLevelData(void);
 
-static void ButtonCallback(void);
+// nstatic void ButtonCallback(void);
 // static void AudioProcess(void);
 
 // static void Environmental_StartStopTimer(void);
@@ -236,7 +236,7 @@ int main(void)
 #endif /* PREDMNT1_DEBUG_CONNECTION */
 
 #ifdef PREDMNT1_DEBUG_NOTIFY_TRAMISSION
-  PREDMNT1_PRINTF("Debug Notify Trasmission Enabled\r\n\n");
+  PREDMNT1_PRINTF("Debug Notify Transmission Enabled\r\n\n");
 #endif /* PREDMNT1_DEBUG_NOTIFY_TRAMISSION */
 
   /* Set Node Name */
@@ -362,6 +362,37 @@ int main(void)
 
 	      tx_com_ziyad(tx_buffer, strlen((char const *)tx_buffer));
 	    }
+
+	    /* Inertial Features */
+	    Inertial_StartStopTimer();
+
+	    /* FFT Amplitude Features */
+	    FFTAmplitude_EnableDisableFeature();
+
+	    /* FFT FFT Alarm Speed Status Features */
+	    FFTAlarmSpeedRMSStatus_EnableDisableFeature();
+
+	    /* FFT Alarm Acc Peak Status Features */
+	    FFTAlarmAccPeakStatus_EnableDisableFeature();
+
+	    /* FFT Alarm Subrange Status Features */
+	    FFTAlarmSubrangeStatus_EnableDisableFeature();
+
+	    if(PredictiveMaintenance){
+	      /* Manage the vibration analysis */
+	      if (MotionSP_MainManager() != BSP_ERROR_NONE)
+	        Error_Handler();
+	    }
+
+	    /* Motion Data */
+	    if(SendAccGyroMag) {
+	      SendAccGyroMag=0;
+	      SendMotionData();
+	    }
+
+	    /* Wait for Event */
+	    __WFI();
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -530,6 +561,64 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 /**
+  * @brief  Send Motion Data Acc/Mag/Gyro to BLE
+  * @param  None
+  * @retval None
+  */
+static void SendMotionData(void)
+{
+  MOTION_SENSOR_Axes_t ACC_Value;
+  MOTION_SENSOR_Axes_t GYR_Value;
+  MOTION_SENSOR_Axes_t MAG_Value;
+
+  BLE_MANAGER_INERTIAL_Axes_t ACC_SensorValue;
+  BLE_MANAGER_INERTIAL_Axes_t GYR_SensorValue;
+  BLE_MANAGER_INERTIAL_Axes_t MAG_SensorValue;
+
+  /* Reset the Acc values */
+  ACC_Value.x = ACC_Value.y = ACC_Value.z =0;
+
+  /* Reset the Gyro values */
+  GYR_Value.x = GYR_Value.y = GYR_Value.z =0;
+
+  /* Reset the Magneto values */
+  MAG_Value.x = MAG_Value.y = MAG_Value.z =0;
+
+  /* Read the Acc values */
+  if(TargetBoardFeatures.AccSensorIsInit)
+  {
+    MOTION_SENSOR_GetAxes(ACCELERO_INSTANCE, MOTION_ACCELERO, &ACC_Value);
+  }
+
+  /* Read the Gyro values */
+  if(TargetBoardFeatures.GyroSensorIsInit)
+  {
+    MOTION_SENSOR_GetAxes(GYRO_INSTANCE,MOTION_GYRO, &GYR_Value);
+  }
+
+  /* Read the Magneto values */
+  if(TargetBoardFeatures.MagSensorIsInit)
+  {
+    MOTION_SENSOR_GetAxes(MAGNETO_INSTANCE, MOTION_MAGNETO, &MAG_Value);
+  }
+
+  ACC_SensorValue.x= ACC_Value.x;
+  ACC_SensorValue.y= ACC_Value.y;
+  ACC_SensorValue.z= ACC_Value.z;
+
+  GYR_SensorValue.x= GYR_Value.x;
+  GYR_SensorValue.y= GYR_Value.y;
+  GYR_SensorValue.z= GYR_Value.z;
+
+  MAG_SensorValue.x= MAG_Value.x;
+  MAG_SensorValue.y= MAG_Value.y;
+  MAG_SensorValue.z= MAG_Value.z;
+
+  /* Send the Data with BLE */
+  BLE_AccGyroMagUpdate(&ACC_SensorValue,&GYR_SensorValue,&MAG_SensorValue);
+}
+
+/**
 * @brief  Function for initializing timers for sending the information to BLE:
  *  - 1 for sending MotionFX/AR/CP and Acc/Gyro/Mag
  *  - 1 for sending the Environmental info
@@ -563,7 +652,7 @@ static void InitTimers(void)
   sConfig.OCMode     = TIM_OCMODE_TOGGLE;
   sConfig.OCPolarity = TIM_OCPOLARITY_LOW;
 
-  /* Output Compare Toggle Mode configuration: Channel2 for environmental sensor */
+  /* Output Compare Toggle Mode configuration: Channel1 for environmental sensor */
   sConfig.Pulse = DEFAULT_uhCCR1_Val;
   if(HAL_TIM_OC_ConfigChannel(&TimCCHandle, &sConfig, TIM_CHANNEL_1) != HAL_OK)
   {
@@ -687,6 +776,270 @@ static void platform_init(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
   HAL_Delay(1000);
 #endif
+}
+
+/**
+ * @brief  Check if there are a valid Vibration Parameters Values in Memory and read them
+ * @param pAccelerometer_Parameters Pointer to Accelerometer parameter structure
+ * @param pMotionSP_Parameters Pointer to Board parameter structure
+ * @retval unsigned char Success/Not Success
+ */
+static unsigned char ReCallVibrationParamFromMemory(void)
+{
+  /* ReLoad the Vibration Parameters Values from RAM */
+  unsigned char Success=0;
+
+  PREDMNT1_PRINTF("Recall the vibration parameter values from FLASH\r\n");
+
+  /* Recall the Vibration Parameters Values saved */
+  MDM_ReCallGMD(GMD_VIBRATION_PARAM,(void *)VibrationParam);
+
+  if(VibrationParam[0] == CHECK_VIBRATION_PARAM)
+  {
+    AcceleroParams.AccOdr=              VibrationParam[1];
+    AcceleroParams.AccFifoBdr=          VibrationParam[2];
+    AcceleroParams.fs=                  VibrationParam[3];
+    MotionSP_Parameters.FftSize=        VibrationParam[4];
+    MotionSP_Parameters.tau=            VibrationParam[5];
+    MotionSP_Parameters.window=         VibrationParam[6];
+    MotionSP_Parameters.td_type=        VibrationParam[7];
+    MotionSP_Parameters.tacq=           VibrationParam[8];
+    MotionSP_Parameters.FftOvl=         VibrationParam[9];
+    MotionSP_Parameters.subrange_num=   VibrationParam[10];
+
+    PREDMNT1_PRINTF("Vibration parameter values read from FLASH\r\n");
+
+#if (USE_SPI_FOR_DIL24 == 0)
+    if(AcceleroParams.AccFifoBdr > 1660)
+    {
+      PREDMNT1_PRINTF("AccFifoBdr value out of limit\r\n");
+      AcceleroParams.AccFifoBdr= 1660;
+      AcceleroParams.AccOdr=  1660;
+      MotionSP_AcceleroConfig();
+      SaveVibrationParamToMemory();
+    }
+    else
+#endif /* USE_SPI_FOR_DIL24 */
+    {
+      NecessityToSaveMetaDataManager=0;
+    }
+  }
+  else
+  {
+    PREDMNT1_PRINTF("Vibration parameters values not present in FLASH\r\n");
+    SaveVibrationParamToMemory();
+  }
+
+  return Success;
+}
+
+/** @brief Predictive Maintenance Initialization
+  * @param None
+  * @retval None
+  */
+static void InitPredictiveMaintenance(void)
+{
+  /* Set the vibration parameters with default values */
+  MotionSP_SetDefaultVibrationParam();
+
+  /* Read Vibration Parameters From Memory */
+  ReCallVibrationParamFromMemory();
+
+  PREDMNT1_PRINTF("\r\nAccelerometer parameters:\r\n");
+  PREDMNT1_PRINTF("AccOdr= %d\tAccFifoBdr= %d\tfs= %d\r\n", AcceleroParams.AccOdr,
+                                                            AcceleroParams.AccFifoBdr,
+                                                            AcceleroParams.fs);
+
+
+  PREDMNT1_PRINTF("\r\nMotionSP parameters:\r\n");
+  PREDMNT1_PRINTF("size= %d\twind= %d\ttacq= %d\tovl= %d\tsubrange_num= %d\r\n\n", MotionSP_Parameters.FftSize,
+                                                                                   MotionSP_Parameters.window,
+                                                                                   MotionSP_Parameters.tacq,
+                                                                                   MotionSP_Parameters.FftOvl,
+                                                                                   MotionSP_Parameters.subrange_num);
+
+  PREDMNT1_PRINTF("************************************************************************\r\n\r\n");
+
+  /* Initializes accelerometer with vibration parameters values */
+  if(MotionSP_AcceleroConfig()) {
+    PREDMNT1_PRINTF("\tFailed Set Accelerometer Parameters\r\n\n");
+  } else {
+    PREDMNT1_PRINTF("\tOK Set Accelerometer Parameters\r\n\n");
+  }
+}
+
+/**
+ * @brief  Save vibration parameters values to memory
+ * @param pAccelerometer_Parameters Pointer to Accelerometer parameter structure
+ * @param pMotionSP_Parameters Pointer to Board parameter structure
+ * @retval unsigned char Success/Not Success
+ */
+unsigned char SaveVibrationParamToMemory(void)
+{
+  /* ReLoad the Vibration Parameters Values from RAM */
+  unsigned char Success=0;
+
+  VibrationParam[0]= CHECK_VIBRATION_PARAM;
+  VibrationParam[1]=  (uint16_t)AcceleroParams.AccOdr;
+  VibrationParam[2]=  (uint16_t)AcceleroParams.AccFifoBdr;
+  VibrationParam[3]=  (uint16_t)AcceleroParams.fs;
+  VibrationParam[4]=  (uint16_t)MotionSP_Parameters.FftSize;
+  VibrationParam[5]=  (uint16_t)MotionSP_Parameters.tau;
+  VibrationParam[6]=  (uint16_t)MotionSP_Parameters.window;
+  VibrationParam[7]=  (uint16_t)MotionSP_Parameters.td_type;
+  VibrationParam[8]=  (uint16_t)MotionSP_Parameters.tacq;
+  VibrationParam[9]=  (uint16_t)MotionSP_Parameters.FftOvl;
+  VibrationParam[10]= (uint16_t)MotionSP_Parameters.subrange_num;
+
+  PREDMNT1_PRINTF("Vibration parameters values will be saved in FLASH\r\n");
+  MDM_SaveGMD(GMD_VIBRATION_PARAM,(void *)VibrationParam);
+  NecessityToSaveMetaDataManager=1;
+
+  return Success;
+}
+
+/**
+ * @brief  This function is called when there is a change on the gatt attribute for inertial
+ *         for Start/Stop Timer
+ * @param  None
+ * @retval None
+ */
+static void Inertial_StartStopTimer(void)
+{
+  if( (BLE_Inertial_NotifyEvent == BLE_NOTIFY_SUB) &&
+      (!InertialTimerEnabled) ){
+    /* Start the TIM Base generation in interrupt mode (for Acc/Gyro/Mag sensor) */
+    if(HAL_TIM_OC_Start_IT(&TimCCHandle, TIM_CHANNEL_3) != HAL_OK){
+      /* Starting Error */
+      Error_Handler();
+    }
+
+    /* Set the new Capture compare value */
+    {
+      uint32_t uhCapture = __HAL_TIM_GET_COUNTER(&TimCCHandle);
+      /* Set the Capture Compare Register value (for Acc/Gyro/Mag sensor) */
+      __HAL_TIM_SET_COMPARE(&TimCCHandle, TIM_CHANNEL_3, (uhCapture + uhCCR3_Val));
+    }
+
+    InertialTimerEnabled= 1;
+  }
+
+  if( (BLE_Inertial_NotifyEvent == BLE_NOTIFY_UNSUB) &&
+      (InertialTimerEnabled) ){
+    /* Stop the TIM Base generation in interrupt mode (for Acc/Gyro/Mag sensor) */
+    if(HAL_TIM_OC_Stop_IT(&TimCCHandle, TIM_CHANNEL_3) != HAL_OK){
+      /* Stopping Error */
+      Error_Handler();
+    }
+
+    InertialTimerEnabled= 0;
+  }
+}
+
+/**
+ * @brief  This function is called when there is a change on the gatt attribute for FFT Amplitude
+ *         for Enable/Disable Feature
+ * @param  None
+ * @retval None
+ */
+static void FFTAmplitude_EnableDisableFeature(void)
+{
+  if(BLE_FFT_Amplitude_NotifyEvent == BLE_NOTIFY_SUB) {
+    PredictiveMaintenance= 1;
+    FFT_Amplitude= 1;
+  }
+
+  if(BLE_FFT_Amplitude_NotifyEvent == BLE_NOTIFY_UNSUB) {
+    disable_FIFO();
+    EnableDisable_ACC_HP_Filter(HPF_NONE);
+    PredictiveMaintenance= 0;
+    FFT_Amplitude= 0;
+    MotionSP_Running = 0;
+  }
+}
+
+/**
+ * @brief  This function is called when there is a change on the gatt attribute for FFT Alarm Speed RMS
+ *         for Enable/Disable Feature
+ * @param  None
+ * @retval None
+ */
+static void FFTAlarmSpeedRMSStatus_EnableDisableFeature(void)
+{
+  if(BLE_FFTAlarmSpeedStatus_NotifyEvent == BLE_NOTIFY_SUB) {
+    if(!PredictiveMaintenance)
+    {
+      PredictiveMaintenance= 1;
+      FFT_Alarm= 1;
+    }
+  }
+
+  if(BLE_FFTAlarmSpeedStatus_NotifyEvent == BLE_NOTIFY_UNSUB) {
+    if(PredictiveMaintenance)
+    {
+      disable_FIFO();
+      EnableDisable_ACC_HP_Filter(HPF_NONE);
+      PredictiveMaintenance= 0;
+      FFT_Alarm= 0;
+      MotionSP_Running = 0;
+    }
+  }
+}
+
+/**
+ * @brief  This function is called when there is a change on the gatt attribute for FFT Alarm Acc Peak Status
+ *         for Enable/Disable Feature
+ * @param  None
+ * @retval None
+ */
+static void FFTAlarmAccPeakStatus_EnableDisableFeature(void)
+{
+  if(BLE_FFTAlarmAccPeakStatus_NotifyEvent == BLE_NOTIFY_SUB) {
+    if(!PredictiveMaintenance)
+    {
+      PredictiveMaintenance= 1;
+      FFT_Alarm= 1;
+    }
+  }
+
+  if(BLE_FFTAlarmAccPeakStatus_NotifyEvent == BLE_NOTIFY_UNSUB ){
+    if(PredictiveMaintenance)
+    {
+      disable_FIFO();
+      EnableDisable_ACC_HP_Filter(HPF_NONE);
+      PredictiveMaintenance= 0;
+      FFT_Alarm= 0;
+      MotionSP_Running = 0;
+    }
+  }
+}
+
+/**
+ * @brief  This function is called when there is a change on the gatt attribute for FFT Alarm Subrange Status
+ *         for Enable/Disable Feature
+ * @param  None
+ * @retval None
+ */
+static void FFTAlarmSubrangeStatus_EnableDisableFeature(void)
+{
+  if(BLE_FFTAlarmSubrangeStatus_NotifyEvent == BLE_NOTIFY_SUB) {
+    if(!PredictiveMaintenance)
+    {
+      PredictiveMaintenance= 1;
+      FFT_Alarm= 1;
+    }
+  }
+
+  if(BLE_FFTAlarmSubrangeStatus_NotifyEvent == BLE_NOTIFY_UNSUB) {
+    if(PredictiveMaintenance)
+    {
+      disable_FIFO();
+      EnableDisable_ACC_HP_Filter(HPF_NONE);
+      PredictiveMaintenance= 0;
+      FFT_Alarm= 0;
+      MotionSP_Running = 0;
+    }
+  }
 }
 
 /* USER CODE END 4 */
