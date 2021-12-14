@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "metadatamanager_config.h": "c",
+    "main.h": "c",
+    "motionsp_manager.h": "c",
+    "targetfeatures.h": "c",
+    "iks01a3_env_sensors.h": "c",
+    "arm_math.h": "c"
+  },
+  "cmake.configureOnOpen": false
+}
