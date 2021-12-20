@@ -189,6 +189,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
 	    uint8_t reg;
@@ -211,14 +212,19 @@ int main(void)
 	      acceleration_mg[2] =
 	        iis3dwb_from_fs2g_to_mg(data_raw_acceleration[2]);
 
-	      sprintf((char *)tx_buffer,
-	              "Acceleration [mg]:%4.2f\t%4.2f\t%4.2f\r\n",
-	              acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
+	      // Fill the buffer with "x axis" acceleration data
+	      for (int i = 0; i < 8192; ++i) {
+	    	  /* Read acceleration field data */
+	    	  memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
 
-	      tx_com_ziyad(tx_buffer, strlen((char const *)tx_buffer));
+	    	  iis3dwb_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
+
+	    	  acceleration_mg[0] = iis3dwb_from_fs2g_to_mg(data_raw_acceleration[0]);
+	    	  rxBuf[i] = (int)acceleration_mg[0];
+	    	  callback_state = 1;
+	      }
 
 		  //do audio loopback and push mono-sum to fft_in_buf
-
 		  int fft_in_ptr = 0;
 		  if (callback_state == 1) {
 			  for (int i=0; i<8192; i=i+4) {
@@ -230,7 +236,6 @@ int main(void)
 				  txBuf[i+3] = rxBuf[i+3];
 				  fft_in_ptr++;
 			  }
-
 			  DoFFT();
 		  }
 
@@ -244,13 +249,34 @@ int main(void)
 				  txBuf[i+3] = rxBuf[i+3];
 				  fft_in_ptr++;
 			  }
-
-
 			  DoFFT();
-
 		  }
-
 	    }
+
+	    // Display acceleration results
+	    sprintf((char *)tx_buffer,
+	              "\nAcceleration [mg] : %4.2f    %4.2f    %4.2f\r\n",
+	              acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
+
+	    tx_com_ziyad(tx_buffer, strlen((char const *)tx_buffer));
+
+	    // Display FFT results
+	    sprintf((char *)tx_buffer,
+	    			"\nFFT : %d -- %d -- %d -- %d -- %d -- %d -- %d -- %d -- %d -- %d\r\n",
+					outarray[0], //frame start
+					outarray[1], //31-5Hz
+					outarray[2], //63 Hz
+					outarray[3], //125 Hz
+					outarray[4], //250 Hz
+					outarray[5], //500 Hz
+					outarray[6], //1 kHz
+					outarray[7], //2.2 kHz
+					outarray[8], //4.5 kHz
+					outarray[9], //9 kHz
+					outarray[10] //15 kHz
+					);
+	    tx_com_ziyad(tx_buffer, strlen((char const *)tx_buffer));
+
 
 	    iis3dwb_temp_flag_data_ready_get(&dev_ctx, &reg);
 
@@ -263,11 +289,11 @@ int main(void)
 	      temperature_degC = iis3dwb_from_lsb_to_celsius(data_raw_temperature);
 
 	      sprintf((char *)tx_buffer,
-	              "Temperature [degC]:%6.2f\r\n", temperature_degC);
+	              "Temperature [degC] : %6.2f\r\n", temperature_degC);
 
 	      tx_com_ziyad(tx_buffer, strlen((char const *)tx_buffer));
 	    }
-
+	    HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
