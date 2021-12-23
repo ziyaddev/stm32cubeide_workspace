@@ -65,6 +65,8 @@ char dev_id [8];
 uint16_t rxBuf[16384];
 uint16_t txBuf[16384];
 
+char rxBufstr[16384];
+
 float fft_in_buf[2048];
 float fft_out_buf[2048];
 
@@ -223,6 +225,11 @@ int main(void)
 	    	  rxBuf[i] = (int)acceleration_mg[0];
 	    	  callback_state = 1;
 	      }
+
+	      for (int i = 0; i < rxBuf[i]; ++i) {
+	    	  sprintf(rxBufstr[i], "%u", rxBuf[i]);
+	    	  HAL_UART_Transmit(&huart2, ("\nAcceleration : %s", rxBufstr), sizeof(rxBufstr[i]), 100);
+		}
 
 		  //do audio loopback and push mono-sum to fft_in_buf
 		  int fft_in_ptr = 0;
