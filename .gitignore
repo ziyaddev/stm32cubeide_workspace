@@ -1,7 +1,7 @@
 # Folders
 
 /.metadata/
-.settings/
+**/.settings/
 **/Debug
 
 # Files
